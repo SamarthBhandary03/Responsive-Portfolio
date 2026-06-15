@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Samarth Bhandary | Portfolio</title>
+
+<meta name="description" content="Professional portfolio website showcasing projects, skills, and contact information.">
+
+<style>
+/* =========================
+   CSS VARIABLES
+========================= */
+:root{
+    --bg:#f8fafc;
+    --surface:#ffffff;
+    --primary:#2563eb;
+    --secondary:#1e293b;
+    --text:#111827;
+    --text-light:#64748b;
+    --border:#e2e8f0;
+    --shadow:0 10px 25px rgba(0,0,0,.08);
+
+    --radius:16px;
+    --transition:.3s ease;
+
+    --container:1200px;
+}
+
+[data-theme="dark"]{
+    --bg:#0f172a;
+    --surface:#1e293b;
+    --primary:#60a5fa;
+    --secondary:#f8fafc;
+    --text:#f1f5f9;
+    --text-light:#cbd5e1;
+    --border:#334155;
+    --shadow:0 10px 25px rgba(0,0,0,.4);
+}
+
+/* =========================
+   RESET
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Segoe UI',sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.6;
+    transition:var(--transition);
+}
+
+/* =========================
+   ACCESSIBILITY
+========================= */
+
+.skip-link{
+    position:absolute;
+    left:-9999px;
+}
+
+.skip-link:focus{
+    left:10px;
+    top:10px;
+    background:#000;
+    color:#fff;
+    padding:10px;
+    z-index:1000;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible{
+    outline:3px solid var(--primary);
+    outline-offset:3px;
+}
+
+/* =========================
+   CONTAINER
+========================= */
+
+.container{
+    width:90%;
+    max-width:var(--container);
+    margin:auto;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+header{
+    position:sticky;
+    top:0;
+    z-index:999;
+    background:var(--surface);
+    border-bottom:1px solid var(--border);
+}
+
+.navbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:1rem 0;
+}
+
+.logo{
+    font-size:1.5rem;
+    font-weight:700;
+    color:var(--primary);
+}
+
+nav ul{
+    display:flex;
+    list-style:none;
+    gap:1.5rem;
+}
+
+nav a{
+    text-decoration:none;
+    color:var(--text);
+    font-weight:500;
+}
+
+.theme-btn{
+    border:none;
+    background:var(--primary);
+    color:white;
+    padding:10px 15px;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+/* =========================
+   HERO GRID
+========================= */
+
+.hero{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:2rem;
+    align-items:center;
+    min-height:90vh;
+    padding:3rem 0;
+}
+
+.hero-text h1{
+    font-size:3rem;
+    margin-bottom:1rem;
+}
+
+.hero-text span{
+    color:var(--primary);
+}
+
+.hero-text p{
+    color:var(--text-light);
+    margin-bottom:1.5rem;
+}
+
+.hero-buttons{
+    display:flex;
+    gap:1rem;
+    flex-wrap:wrap;
+}
+
+.btn{
+    text-decoration:none;
+    padding:12px 24px;
+    border-radius:10px;
+    font-weight:600;
+    transition:var(--transition);
+}
+
+.btn-primary{
+    background:var(--primary);
+    color:white;
+}
+
+.btn-outline{
+    border:2px solid var(--primary);
+    color:var(--primary);
+}
+
+.hero-image{
+    display:flex;
+    justify-content:center;
+}
+
+.hero-image img{
+    width:300px;
+    height:300px;
+    object-fit:cover;
+    border-radius:50%;
+    border:6px solid var(--primary);
+    box-shadow:var(--shadow);
+}
+
+/* =========================
+   SECTIONS
+========================= */
+
+section{
+    padding:5rem 0;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:3rem;
+    font-size:2rem;
+}
+
+/* =========================
+   ABOUT
+========================= */
+
+.about-card{
+    background:var(--surface);
+    padding:2rem;
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+}
+
+/* =========================
+   SKILLS GRID
+========================= */
+
+.skills-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:1rem;
+}
+
+.skill{
+    background:var(--surface);
+    padding:1.5rem;
+    text-align:center;
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+}
+
+/* =========================
+   PROJECTS GRID
+========================= */
+
+.projects-grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:2rem;
+}
+
+.project-card{
+    background:var(--surface);
+    border-radius:var(--radius);
+    overflow:hidden;
+    box-shadow:var(--shadow);
+}
+
+.project-card img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+}
+
+.project-content{
+    padding:1.5rem;
+}
+
+.project-content h3{
+    margin-bottom:10px;
+}
+
+/* =========================
+   CONTACT
+========================= */
+
+.contact-grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:2rem;
+}
+
+.contact-form{
+    background:var(--surface);
+    padding:2rem;
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+}
+
+.form-group{
+    margin-bottom:1rem;
+}
+
+input,
+textarea{
+    width:100%;
+    padding:12px;
+    border:1px solid var(--border);
+    border-radius:10px;
+    background:transparent;
+    color:var(--text);
+}
+
+button{
+    cursor:pointer;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    text-align:center;
+    padding:2rem;
+    border-top:1px solid var(--border);
+}
+
+/* =========================
+   TABLET
+========================= */
+
+@media(min-width:768px){
+
+    .hero{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .projects-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .contact-grid{
+        grid-template-columns:1fr 1fr;
+    }
+}
+
+/* =========================
+   DESKTOP
+========================= */
+
+@media(min-width:1024px){
+
+    .projects-grid{
+        grid-template-columns:repeat(3,1fr);
+    }
+
+    .hero-text h1{
+        font-size:4rem;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<a href="#main" class="skip-link">Skip to Content</a>
+
+<header>
+<div class="container navbar">
+
+<div class="logo">Samarth</div>
+
+<nav>
+<ul>
+<li><a href="#about">About</a></li>
+<li><a href="#skills">Skills</a></li>
+<li><a href="#projects">Projects</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+</nav>
+
+<button class="theme-btn" id="themeToggle">
+🌙 Theme
+</button>
+
+</div>
+</header>
+
+<main id="main">
+
+<section class="hero container">
+
+<div class="hero-text">
+
+<h1>
+Hi, I'm <span>Samarth Bhandary</span>
+</h1>
+
+<p>
+Web Developer passionate about creating responsive,
+accessible, and modern websites using HTML, CSS,
+JavaScript, and modern technologies.
+</p>
+
+<div class="hero-buttons">
+<a href="#projects" class="btn btn-primary">
+View Projects
+</a>
+
+<a href="#contact" class="btn btn-outline">
+Contact Me
+</a>
+</div>
+
+</div>
+
+<div class="hero-image">
+<img src="c:\Users\SAMARTH BHANDARY\Downloads\sam.png" alt="Profile Photo">
+</div>
+
+</section>
+
+<section id="about">
+<div class="container">
+
+<h2 class="section-title">About Me</h2>
+
+<div class="about-card">
+<p>
+I'm a passionate developer focused on building
+high-performance and user-friendly web experiences.
+I enjoy creating responsive layouts, accessible
+interfaces, and modern digital solutions.
+</p>
+</div>
+
+</div>
+</section>
+
+<section id="skills">
+<div class="container">
+
+<h2 class="section-title">Skills</h2>
+
+<div class="skills-grid">
+
+<div class="skill">HTML5</div>
+<div class="skill">CSS3</div>
+<div class="skill">JavaScript</div>
+<div class="skill">Responsive Design</div>
+<div class="skill">SEO</div>
+<div class="skill">Accessibility</div>
+<div class="skill">Git</div>
+<div class="skill">React</div>
+
+</div>
+
+</div>
+</section>
+
+<section id="projects">
+<div class="container">
+
+<h2 class="section-title">Projects</h2>
+
+<div class="projects-grid">
+
+<article class="project-card">
+<img src="https://picsum.photos/600/400?1" alt="Project 1">
+<div class="project-content">
+<h3>Portfolio Website</h3>
+<p>Modern responsive personal portfolio.</p>
+</div>
+</article>
+
+<article class="project-card">
+<img src="https://picsum.photos/600/400?2" alt="Project 2">
+<div class="project-content">
+<h3>E-Commerce UI</h3>
+<p>Responsive online shopping interface.</p>
+</div>
+</article>
+
+<article class="project-card">
+<img src="https://picsum.photos/600/400?3" alt="Project 3">
+<div class="project-content">
+<h3>Business Landing Page</h3>
+<p>SEO-friendly conversion-focused design.</p>
+</div>
+</article>
+
+</div>
+
+</div>
+</section>
+
+<section id="contact">
+<div class="container">
+
+<h2 class="section-title">Contact</h2>
+
+<div class="contact-grid">
+
+<div>
+<h3>Get In Touch</h3>
+<p>Email: samarthmbhandary@gmail.com</p>
+<p>Location: Karnataka, India</p>
+</div>
+
+<form class="contact-form">
+
+<div class="form-group">
+<input type="text" placeholder="Your Name" required>
+</div>
+
+<div class="form-group">
+<input type="email" placeholder="Your Email" required>
+</div>
+
+<div class="form-group">
+<textarea rows="5" placeholder="Your Message" required></textarea>
+</div>
+
+<button class="btn btn-primary" type="submit">
+Send Message
+</button>
+
+</form>
+
+</div>
+
+</div>
+</section>
+
+</main>
+
+<footer>
+<p>© 2026 Samarth Bhandary. All Rights Reserved.</p>
+</footer>
+
+<script>
+const toggleBtn = document.getElementById('themeToggle');
+
+toggleBtn.addEventListener('click', () => {
+    const currentTheme =
+        document.documentElement.getAttribute('data-theme');
+
+    const newTheme =
+        currentTheme === 'dark' ? 'light' : 'dark';
+
+    document.documentElement.setAttribute(
+        'data-theme',
+        newTheme
+    );
+
+    localStorage.setItem('theme', newTheme);
+});
+
+const savedTheme = localStorage.getItem('theme');
+
+if(savedTheme){
+    document.documentElement.setAttribute(
+        'data-theme',
+        savedTheme
+    );
+}
+</script>
+
+</body>
+</html>
